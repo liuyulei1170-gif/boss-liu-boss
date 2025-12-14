@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>红日废土世界</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,694 +12,528 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
+        
         body {
-            background-color: var(--light);
-            color: var(--text);
+            background-color: #0a0a0a;
+            color: #e0e0e0;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
+        
+        /* 背景纹理 */
+        body::before {
+            content: "";
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0 L100,100" stroke="%23222" stroke-width="0.5"/><path d="M100,0 L0,100" stroke="%23222" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: -1;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
+        
+        /* 顶部导航 */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(20, 20, 20, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #5a1a1a;
         }
-
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: bold;
+            color: #d32f2f;
+            text-shadow: 0 0 5px #ff5252;
+            letter-spacing: 1px;
         }
-
-        .logo i {
-            font-size: 2rem;
+        
+        .logo span {
+            color: #ff9800;
         }
-
-        nav ul {
+        
+        .nav-links {
             display: flex;
-            list-style: none;
+            gap: 30px;
         }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
+        
+        .nav-links a {
+            color: #ccc;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: color 0.3s;
             position: relative;
         }
-
-        nav ul li a:hover {
-            color: var(--accent);
+        
+        .nav-links a:hover {
+            color: #ff5252;
         }
-
-        nav ul li a::after {
+        
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+            background-color: #ff5252;
+            transition: width 0.3s;
         }
-
-        nav ul li a:hover::after {
+        
+        .nav-links a:hover::after {
             width: 100%;
         }
-
+        
+        /* 英雄区域 */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
+            height: 90vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, rgba(120, 20, 20, 0.2) 0%, rgba(10, 10, 10, 0.9) 70%);
             position: relative;
-            display: inline-block;
+            overflow: hidden;
         }
-
-        .section-title h2::after {
+        
+        /* 红日效果 */
+        .red-sun {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(211, 47, 47, 0.8) 0%, rgba(120, 20, 20, 0.4) 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: pulse 8s infinite alternate;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 0.9; transform: scale(1.05); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #ff9800;
+            text-shadow: 0 0 10px rgba(255, 82, 82, 0.7), 0 0 20px rgba(255, 82, 82, 0.5);
+            letter-spacing: 3px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #d32f2f;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: 2px solid #ff5252;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+            box-shadow: 0 0 15px rgba(255, 82, 82, 0.7);
+            transform: translateY(-3px);
+        }
+        
+        /* 内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ff9800;
+            position: relative;
+            text-transform: uppercase;
+        }
+        
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
+            width: 100px;
+            height: 3px;
+            background-color: #d32f2f;
         }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
+        
+        /* 故事卡片 */
+        .story-cards {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
-
-        .about-img {
-            border-radius: 10px;
+        
+        .card {
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid #444;
             position: relative;
-            padding-bottom: 10px;
         }
-
-        .footer-column h3::after {
+        
+        .card::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #d32f2f, #ff9800);
         }
-
-        .footer-column p {
-            margin-bottom: 1rem;
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
-
-        .footer-links {
-            list-style: none;
+        
+        .card-img {
+            height: 200px;
+            width: 100%;
+            background-color: #444;
+            background-size: cover;
+            background-position: center;
         }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
+        
+        .card-content {
+            padding: 20px;
         }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff9800;
         }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
+        
+        /* 生存指南 */
+        .survival-guide {
+            background-color: rgba(40, 40, 40, 0.6);
+            border-radius: 10px;
+            padding: 40px;
+            margin-top: 40px;
+            border-left: 5px solid #d32f2f;
         }
-
+        
+        .guide-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .guide-icon {
+            font-size: 1.8rem;
+            color: #ff9800;
+            margin-right: 15px;
+            min-width: 40px;
+        }
+        
+        /* 底部 */
+        footer {
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid #5a1a1a;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        
         .social-links {
             display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            gap: 20px;
+            margin: 20px 0;
         }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
+        
+        .social-links a {
+            color: #ccc;
             font-size: 1.5rem;
-            cursor: pointer;
+            transition: color 0.3s;
         }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        
+        .social-links a:hover {
+            color: #ff5252;
         }
-
+        
+        .copyright {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
         @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                gap: 15px;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            .red-sun {
+                width: 200px;
+                height: 200px;
+                top: 15%;
+                right: 5%;
             }
             
-            nav ul.active {
-                display: flex;
+            .section-title {
+                font-size: 2rem;
             }
             
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            .survival-guide {
+                padding: 25px;
             }
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        
+        /* 废墟装饰 */
+        .ruins {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .ruin-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 8rem;
+            color: #666;
+            transform: rotate(-15deg);
+        }
+        
+        .ruin-2 {
+            bottom: 10%;
+            right: 5%;
+            font-size: 6rem;
+            color: #666;
+            transform: rotate(10deg);
+        }
+        
+        /* 地图部分 */
+        .map-container {
+            position: relative;
+            height: 400px;
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+            border: 1px solid #5a1a1a;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(20, 20, 20, 0.8), transparent 30%, transparent 70%, rgba(20, 20, 20, 0.8));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-label {
+            background-color: rgba(211, 47, 47, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- 废墟装饰元素 -->
+    <div class="ruins ruin-1">
+        <i class="fas fa-radiation-alt"></i>
+    </div>
+    <div class="ruins ruin-2">
+        <i class="fas fa-skull-crossbones"></i>
+    </div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">红日<span>废土</span></div>
+        <div class="nav-links">
+            <a href="#story">世界故事</a>
+            <a href="#survival">生存指南</a>
+            <a href="#map">废土地图</a>
+            <a href="#about">关于我们</a>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="red-sun"></div>
+        <div class="hero-content">
+            <h1>红日废土世界</h1>
+            <p>在核爆后的荒芜之地，血红色的太阳永远高悬天际，幸存者在废墟中挣扎求生。这是一个关于毁灭、生存与希望的故事。</p>
+            <p>辐射尘遮蔽了蓝天，变异的生物在黑暗中低语，人类文明只剩下断壁残垣。但你，还活着。</p>
+            <a href="#story" class="cta-button">探索废土世界</a>
         </div>
     </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+    
+    <!-- 故事区域 -->
+    <div class="container" id="story">
+        <h2 class="section-title">废土纪事</h2>
+        <div class="story-cards">
+            <div class="card">
+                <div class="card-img" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">大灾变之日</h3>
+                    <p>2077年10月23日，人类历史上最黑暗的一天。全球核战争在几小时内爆发，90%的人口在首轮攻击中消失。天空被染成永久的红色，世界从此改变。</p>
+                </div>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+            
+            <div class="card">
+                <div class="card-img" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">辐射生物</h3>
+                    <p>辐射改变了地球上的所有生命形态。变异的野兽、发光的植物，以及那些无法言说的存在，在废墟中游荡。最危险的，或许是那些同样幸存下来的人类...</p>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80')"></div>
+                <div class="card-content">
+                    <h3 class="card-title">幸存者聚落</h3>
+                    <p>在废土的各个角落，小型的幸存者社区艰难地维持着。他们建立堡垒，收集资源，保卫着自己的家园。在这些聚落中，人类文明的火种仍在闪烁。</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+    </div>
+    
+    <!-- 生存指南 -->
+    <div class="container" id="survival">
+        <h2 class="section-title">废土生存指南</h2>
+        <div class="survival-guide">
+            <div class="guide-item">
+                <div class="guide-icon"><i class="fas fa-radiation"></i></div>
+                <div>
+                    <h3>对抗辐射</h3>
+                    <p>永远携带盖革计数器，远离高辐射区域。抗辐射药物是废土上最珍贵的资源之一。记住：如果水会发光，千万不要喝。</p>
                 </div>
             </div>
+            
+            <div class="guide-item">
+                <div class="guide-icon"><i class="fas fa-tint"></i></div>
+                <div>
+                    <h3>寻找水源</h3>
+                    <p>净水片比黄金更宝贵。学会从空气中收集水分，识别可安全饮用的植物汁液。永远煮沸你找到的水，除非你想多长出一条胳膊。</p>
+                </div>
+            </div>
+            
+            <div class="guide-item">
+                <div class="guide-icon"><i class="fas fa-shield-alt"></i></div>
+                <div>
+                    <h3>安全庇护</h3>
+                    <p>避免在开阔地带过夜。地下空间通常更安全，但要小心变异的穴居生物。设置陷阱和预警系统，信任你的直觉，而不是陌生人的笑脸。</p>
+                </div>
+            </div>
+            
+            <div class="guide-item">
+                <div class="guide-icon"><i class="fas fa-handshake"></i></div>
+                <div>
+                    <h3">与人交往</h3>
+                    <p>在废土上，最危险的往往不是怪物，而是其他幸存者。保持警惕，但不要失去人性。孤独的生存者最终会发疯，找到你可以信任的伙伴。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 地图区域 -->
+    <div class="container" id="map">
+        <h2 class="section-title">废土地图</h2>
+        <p style="text-align: center; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">红日废土主要分为四个区域：辐射中心区、枯萎荒原、锈蚀城市和幸存者峡谷。每个区域都有独特的危险和资源。</p>
+        
+        <div class="map-container">
+            <div class="map-overlay">
+                <div class="map-label">探索废土地图 (交互功能需在完整版中解锁)</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部 -->
+    <footer id="about">
+        <div class="footer-content">
+            <div class="footer-logo">红日废土世界</div>
+            <p>一个关于毁灭后生存的虚构世界设定</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            
             <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+                &copy; 2077 红日废土世界 | 本网站为虚构废土主题展示页面 | 背景图片来自Unsplash
             </div>
         </div>
     </footer>
-
+    
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
+        // 简单的滚动效果
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
@@ -711,12 +545,28 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
                 }
             });
         });
+        
+        // 红日脉动效果增强
+        const redSun = document.querySelector('.red-sun');
+        setInterval(() => {
+            const scale = 1 + Math.random() * 0.1;
+            const opacity = 0.7 + Math.random() * 0.2;
+            redSun.style.transform = `scale(${scale})`;
+            redSun.style.opacity = opacity;
+        }, 3000);
+        
+        // 添加页面加载效果
+        window.addEventListener('load', function() {
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 1s';
+            
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
+        });
     </script>
 </body>
-
 </html>
